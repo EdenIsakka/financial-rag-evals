@@ -40,5 +40,5 @@ El usuario quiere aprender ingeniería de IA con este proyecto, no solo terminar
 - Comparar contra Claude por API (fila extra en la ablación), si algún día se quiere pagar.
 - (Hito 5) La "sección" de muchos chunks es el encabezado repetido de página (p. ej. "Banco Davivienda S. A. y sus Subsidiarias"), no el título real de la tabla. Filtrar encabezados repetidos y medir si mejora el retrieval.
 - (Hito 5) Tablas de hasta ~21k caracteres: probar partirlas por filas repitiendo el encabezado de columnas.
-- (Hito 4) El 20-F en HTML no trae páginas ni encabezados reconocibles (la SEC usa `<div>` con estilos, no `<h1>`): sus chunks quedan sin página ni sección. Para citarlos, detectar los "Item N." del 20-F como sección.
+- Preferir el PDF de los 20-F (la empresa lo publica en su web) al HTML de la SEC: el HTML no tiene páginas ni encabezados `<h*>`, así que no se puede citar. Se usa el PDF desde el Hito 2.
 - Validar al ingerir que el año del documento coincide con el del nombre de archivo (pasó con un 20-F de 2008 guardado como 2024).
