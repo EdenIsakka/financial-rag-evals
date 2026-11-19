@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.pytest_cache/
+.ruff_cache/
+
+# Source documents are third-party and large; download them locally, don't commit them.
+data/raw/
+data/processed/
