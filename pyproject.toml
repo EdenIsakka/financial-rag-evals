@@ -3,7 +3,17 @@ name = "finrag"
 version = "0.1.0"
 description = "RAG over financial reports with source citations and an evaluation suite"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "docling>=2.151.1",
+    "pgvector>=0.5.1",
+    "psycopg[binary]>=3.3.9",
+    "sentence-transformers>=6.3.0",
+    "torch>=2.11.0",
+    "torchvision>=0.26.0",
+]
+
+[project.scripts]
+finrag-ingest = "finrag.ingest:main"
 
 [build-system]
 requires = ["uv_build>=0.12.23,<0.13.0"]
@@ -15,6 +25,27 @@ line-length = 100
 [tool.ruff.lint]
 # E/F: errores básicos, I: orden de imports, UP: sintaxis moderna, B: bugs comunes
 select = ["E", "F", "I", "UP", "B"]
+
+# torch con CUDA en Windows (tu GPU) y solo CPU en Linux (el CI no tiene GPU y así instala ~10x menos).
+[tool.uv.sources]
+torch = [
+    { index = "pytorch-cu128", marker = "sys_platform == 'win32'" },
+    { index = "pytorch-cpu", marker = "sys_platform != 'win32'" },
+]
+torchvision = [
+    { index = "pytorch-cu128", marker = "sys_platform == 'win32'" },
+    { index = "pytorch-cpu", marker = "sys_platform != 'win32'" },
+]
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
 
 [dependency-groups]
 dev = [

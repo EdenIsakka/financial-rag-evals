@@ -32,9 +32,13 @@ El usuario quiere aprender ingeniería de IA con este proyecto, no solo terminar
 | 5 | Ablaciones | Tabla con 4 filas reales (pdftotext→Docling, +BM25, +reranker) |
 | 6 | Demo + README | README entendible en 60 s; golden set 100+ |
 
-**Hito actual: 1 (Esqueleto).**
+**Hito actual: 2 (Ingesta).**
 
 ## Ideas para después
 
 - Despliegue público (Fly.io).
 - Comparar contra Claude por API (fila extra en la ablación), si algún día se quiere pagar.
+- (Hito 5) La "sección" de muchos chunks es el encabezado repetido de página (p. ej. "Banco Davivienda S. A. y sus Subsidiarias"), no el título real de la tabla. Filtrar encabezados repetidos y medir si mejora el retrieval.
+- (Hito 5) Tablas de hasta ~21k caracteres: probar partirlas por filas repitiendo el encabezado de columnas.
+- (Hito 4) El 20-F en HTML no trae páginas ni encabezados reconocibles (la SEC usa `<div>` con estilos, no `<h1>`): sus chunks quedan sin página ni sección. Para citarlos, detectar los "Item N." del 20-F como sección.
+- Validar al ingerir que el año del documento coincide con el del nombre de archivo (pasó con un 20-F de 2008 guardado como 2024).
